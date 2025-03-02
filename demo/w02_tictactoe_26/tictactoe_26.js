@@ -7,6 +7,7 @@ const container = document.querySelector('.container');
 const alertBox = document.querySelector('.alert');
 const allLi = document.querySelectorAll('.board li');
 const resetBtn = document.querySelector('.reset');
+
 console.log(alertBox);
 console.log(allLi);
 
@@ -17,23 +18,35 @@ const winMessage = (player) => {
     alertBox.style.color = 'green';
     alertBox.style.display = 'block';
     alertBox.textContent = 'Player o wins';
-  } else {
+  } else if (player === 'x') {
     container.style.backgroundColor = 'rgba(240,118,128,0.726)';
     alertBox.style.background = 'rgba(240,118,128,0.726)';
     alertBox.style.color = 'green';
     alertBox.style.display = 'block';
-    alertBox.textContent = 'Player o wins';
+    alertBox.textContent = 'Player x wins';
   }
 };
+
 const tieMessage = () => {
-  alert.style.backgroundColor = '#888';
-  alert.style.color = '#ddd';
-  alert.style.display = 'block'
-  alert.textContent = 'tie';
+  alertBox.style.backgroundColor = '#888';  
+  alertBox.style.color = '#ddd';
+  alertBox.style.display = 'block';
+  alertBox.textContent = 'Tie';
 };
 
-tieMessage();
-//winMessage('x');
+
+
+const reset = () => {
+  alertBox.style.display = 'none';  
+  container.style.backgroundColor = '#666';
+  allLi.forEach((item) => {
+    item.textContent = '+'; 
+    item.classList = '';    
+  });
+};
+
+resetBtn.addEventListener('click', reset);
+
 
 
 /*
