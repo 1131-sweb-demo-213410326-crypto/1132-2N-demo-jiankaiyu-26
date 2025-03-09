@@ -64,8 +64,8 @@ const reset = () => {
     item.textContent = '+'; 
     item.classList = '';    
   });
-  let turn = 0;
-let done = false;
+turn = 0;
+done = false;
 showAlert.style.display = 'none';
 };
 
