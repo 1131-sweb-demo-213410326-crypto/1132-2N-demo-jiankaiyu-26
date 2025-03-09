@@ -4,19 +4,19 @@ let turn = 0;
 let done = false;
 
 const container = document.querySelector('.container');
-const alertBox = document.querySelector('.alert');
+const showAlert = document.querySelector('.alert');
 const allLi = document.querySelectorAll('.board li');
 const resetBtn = document.querySelector('.reset');
 
-console.log(alertBox);
-console.log('allLi' ,allLi);
+//console.log(showAlert);
+//console.log('allLi' ,allLi);
 
 const checkWin = (player) => {
    let p = [];
    allLi.forEach((item)=>{
     p.push(item.classList.contains(player));
    });
-   console.log('p',p);
+   //console.log('p',p);
    const [p1, p2, p3 ,p4 ,p5 ,p6 ,p7 ,p8 ,p9] = p;
    if(
     (p1 && p2 && p3 ) ||
@@ -34,38 +34,69 @@ const checkWin = (player) => {
 const winMessage = (player) => {
   if (player === 'o') {
     container.style.backgroundColor = 'rgba(144,238,144,0.5)';
-    alertBox.style.background = 'rgba(144,238,144,0.5)';
-    alertBox.style.color = 'green';
-    alertBox.style.display = 'block';
-    alertBox.textContent = 'Player o wins';
+    showAlert.style.background = 'rgba(144,238,144,0.5)';
+    showAlert.style.color = 'green';
+    showAlert.style.display = 'block';
+    showAlert.textContent = 'Player o wins';
   } else if (player === 'x') {
     container.style.backgroundColor = 'rgba(240,118,128,0.726)';
-    alertBox.style.background = 'rgba(240,118,128,0.726)';
-    alertBox.style.color = 'green';
-    alertBox.style.display = 'block';
-    alertBox.textContent = 'Player x wins';
+    showAlert.style.background = 'rgba(240,118,128,0.726)';
+    showAlert.style.color = 'green';
+    showAlert.style.display = 'block';
+    showAlert.textContent = 'Player x wins';
   }
 };
 
 const tieMessage = () => {
-  alertBox.style.backgroundColor = '#888';  
-  alertBox.style.color = '#ddd';
-  alertBox.style.display = 'block';
-  alertBox.textContent = 'Tie';
+  showAlert.style.backgroundColor = '#888';  
+  showAlert.style.color = '#ddd';
+  showAlert.style.display = 'block';
+  showAlert.textContent = 'Tie';
 };
 
-console.log(`checkWin('o')`,checkWin('o'));
-console.log(`checkWin('x')`,checkWin('x'));
+//console.log(`checkWin('o')`,checkWin('o'));
+//console.log(`checkWin('x')`,checkWin('x'));
 
 const reset = () => {
-  alertBox.style.display = 'none';  
+  showAlert.style.display = 'none';  
   container.style.backgroundColor = '#666';
   allLi.forEach((item) => {
     item.textContent = '+'; 
     item.classList = '';    
   });
+  let turn = 0;
+let done = false;
+showAlert.style.display = 'none';
 };
 
+const go = (item, player, text)=>{
+  item.textContent = text;
+  //item.classList = 'o disabled';
+  item.classList.add(player,'disabled');
+  if(checkWin(player)){
+    winMessage(player);
+    done = true;
+  }
+};
+
+allLi.forEach((item) => {
+item.addEventListener('click',()=>{
+  if(item.classList.contains('disabled')){
+alert('already filled');
+  }else{
+    if(turn % 2 ===0){
+      go(item,'o','o');
+    }else if (turn % 2 == 1){
+go(item, 'x','x');
+    }
+
+    if(!done && turn < 8)
+      turn ++;
+    else if(!done && turn >=8)
+      tieMessage();
+  }
+})
+});
 resetBtn.addEventListener('click', reset);
 
 
