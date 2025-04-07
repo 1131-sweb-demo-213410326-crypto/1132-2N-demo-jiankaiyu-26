@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    /> -->
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/megaMenu_xx.css" />
+    <link rel="stylesheet" href="./css/classdemo_xx.css" />
+    <title>Mega and Dropdown Menu</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-row container" role="navigation" aria-label="Main">
+        <div class="header-left">
+          <div class="logo">
+            <h1>htchung_xx</h1>
+          </div>
+        </div>
+        <div class="header-right">
+          <ul class="main-menu">
+            <li class="menu-item">
+              <a href="./index.htmnl" class="active">Home</a>
+            </li>
+
+            <li class="menu-item mega-menu">
+              <a href="#">Class Demo +</a>
+              <div class="mega-menu-wrapper slideInUp">
+                <div class="mega-menu-col">
+                  <h5>W1~W4</h5>
+                  <ul class="mega-sub-menu">
+                    <li onclick="showClassDemo('w01_dom_26')">
+                      <a href="#">w01_dom_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w02_dom_26')">
+                      <a href="#">w02_dom_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w03_tictactoe_26')">
+                      <a href="#">w03_tictactoe_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w03_p1_26')">
+                      <a href="#">w03_p1_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w04_p2_26')">
+                      <a href="#">w04_p2_26</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>W5-W8</h5>
+                  <ul class="mega-sub-menu">
+                    <li onclick="showClassDemo('w05_p3_26')">
+                      <a href="#">w05_p3_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w05_p4_26')">
+                      <a href="#">w05_p4_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w06_p5_26')">
+                      <a href="#">w06_p5_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w06_p6_26')">
+                      <a href="#">w06_p6_26</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>Menu block 3</h5>
+                  <ul class="mega-sub-menu">
+                    <li><a href="#">Menu block item 1</a></li>
+                    <li><a href="#">Menu block item 2</a></li>
+                    <li><a href="#">Menu block item 3</a></li>
+                    <li><a href="#">Menu block item 4</a></li>
+                    <li><a href="#">Menu block item 5</a></li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>Menu block 4</h5>
+                  <ul class="mega-sub-menu">
+                    <li><a href="#">Menu block item 1</a></li>
+                    <li><a href="#">Menu block item 2</a></li>
+                    <li><a href="#">Menu block item 3</a></li>
+                    <li><a href="#">Menu block item 4</a></li>
+                    <li><a href="#">Menu block item 5</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="menu-item dropdown">
+              <a href="#">Multipage +</a>
+              <div class="sub-menu-wrapper slideInUp">
+                <ul class="sub-menu">
+                  <li class="menu-item">
+                    <a href="./tictactoe_xx.html">TicTacToe_xx</a>
+                  </li>
+                  <li class="menu-item"><a href="#">Service 2</a></li>
+                  <li class="menu-item"><a href="#">Service 3</a></li>
+                  <li class="menu-item"><a href="#">Service 4</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="menu-item" onclick="showClassDemo('quiz2_xx')">
+              <a href="#">Quiz2_xx</a>
+            </li>
+            <li class="menu-item" onclick="showClassDemo('final_xx')">
+              <a href="#">Final_xx</a>
+            </li>
+          </ul>
+          <a
+            href="#"
+            id="hamburger-icon"
+            class="mobile-toggler"
+            aria-label="Mobile Menu"
+            ><i class="fa-solid fa-bars"></i>
+          </a>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="mobile-menu hidden slideInDown">
+          <ul>
+            <li class="menu-item"><a href="#" class="active">Home</a></li>
+
+            <li class="menu-item mega-menu">
+              <a href="#">Class Demo +</a>
+              <div class="mega-menu-wrapper slideInUp">
+                <div class="mega-menu-col">
+                  <h5>W1~W7</h5>
+                  <ul class="mega-sub-menu">
+                    <li onclick="showClassDemo('w02_intro_26')">
+                      <a href="#">w02_intro_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w03_card_26')">
+                      <a href="#">w03_card_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w06_blog_26')">
+                      <a href="#">w06_blog_26</a>
+                    </li>
+                    <li onclick="showClassDemo('w07_nav_26')">
+                      <a href="#">w07_nav_26</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>Menu block 2</h5>
+                  <ul class="mega-sub-menu">
+                    <li><a href="#">Menu block item 1</a></li>
+                    <li><a href="#">Menu block item 2</a></li>
+                    <li><a href="#">Menu block item 3</a></li>
+                    <li><a href="#">Menu block item 4</a></li>
+                    <li><a href="#">Menu block item 5</a></li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>Menu block 3</h5>
+                  <ul class="mega-sub-menu">
+                    <li><a href="#">Menu block item 1</a></li>
+                    <li><a href="#">Menu block item 2</a></li>
+                    <li><a href="#">Menu block item 3</a></li>
+                    <li><a href="#">Menu block item 4</a></li>
+                    <li><a href="#">Menu block item 5</a></li>
+                  </ul>
+                </div>
+                <div class="mega-menu-col">
+                  <h5>Menu block 4</h5>
+                  <ul class="mega-sub-menu">
+                    <li><a href="#">Menu block item 1</a></li>
+                    <li><a href="#">Menu block item 2</a></li>
+                    <li><a href="#">Menu block item 3</a></li>
+                    <li><a href="#">Menu block item 4</a></li>
+                    <li><a href="#">Menu block item 5</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li class="menu-item dropdown">
+              <a href="#">Services +</a>
+              <div class="sub-menu-wrapper">
+                <ul class="sub-menu">
+                  <li class="menu-item"><a href="#">Service 1</a></li>
+                  <li class="menu-item"><a href="#">Service 2</a></li>
+                  <li class="menu-item"><a href="#">Service 3</a></li>
+                  <li class="menu-item"><a href="#">Service 4</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="menu-item"><a href="#">Blog</a></li>
+            <li class="menu-item"><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <section class="show-classdemo"></section>
+
+    <script src="./js/megaMenu_xx.js"></script>
+    <script src="./js/classdemo_xx.js"></script>
+  </body>
+</html>
