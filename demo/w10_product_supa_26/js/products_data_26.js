@@ -33,7 +33,7 @@ export const mid_products_26 = [
   },
 ];
 
-export const products_xx = [
+export const products_26 = [
   {
     id: 1,
     title: 'Emperor Bed',
