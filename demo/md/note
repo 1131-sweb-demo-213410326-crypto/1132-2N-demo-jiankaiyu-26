@@ -1,7 +1,7 @@
 git config --global user.email "3398621320@qq.com"
 git config --global user.name "1131-sweb-demo21341032"
 
-git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --after="2025-5-8"
+git log --pretty=format:"%h%x09%an%x09%ad%x09%s" --after="2025-5-9"
 npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch
 
 Supabase:

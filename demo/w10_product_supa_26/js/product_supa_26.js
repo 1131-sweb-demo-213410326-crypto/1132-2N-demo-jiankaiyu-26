@@ -18,11 +18,11 @@ const fetchProducts = async () =>{
 const displayProducts = (products) => {
   let productsContent = products
     .map((product) => {
-      const { id, title, price, img } = product;
+      const { id, title, price, remote_img } = product;
       return `
         <div class="single-product">
           <img
-            src="${img}"
+            src="${remote_img}"
             class="single-product-img img"
             alt="${title}"
           />
