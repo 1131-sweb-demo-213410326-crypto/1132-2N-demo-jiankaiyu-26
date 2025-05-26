@@ -21,7 +21,7 @@ const displayProducts = (products) => {
       const { id, title, price, remote_img } = product;
       return `
         <div class="single-product">
-          <img
+          <imgS
             src="${remote_img}"
             class="single-product-img img"
             alt="${title}"
