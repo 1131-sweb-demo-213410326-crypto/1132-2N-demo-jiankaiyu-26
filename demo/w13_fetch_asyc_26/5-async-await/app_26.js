@@ -2,8 +2,9 @@ const btn = document.querySelector('.btn');
 const url = './api/person.json';
 
 btn.addEventListener('click', () => {
- getDataAsyncAwait(url);
+ getDataByFetchApI2(url);
 });
+
 
 const getDataAsyncAwait = async (url) =>{
   try{
