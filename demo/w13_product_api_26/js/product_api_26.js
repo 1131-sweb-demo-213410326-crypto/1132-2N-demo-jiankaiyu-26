@@ -1,5 +1,3 @@
-//import { _supabase } from './clientSupabase_26.js'  ← 如果不用就删掉
-
 const productContainer = document.querySelector('.products-container');
 const url = 'https://www.course-api.com/javascript-store-products';
 
