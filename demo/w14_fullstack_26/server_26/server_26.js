@@ -5,7 +5,7 @@ const app_26 = express();
 app_26.use(express.static('public'));
 app_26.set('view engine', 'ejs');
 
-app_26.use('/product_26/static', (req, res, next)=>{
+app_26.use('/product_26/static', (req, res, next) =>{
     res.render('product_26/static_26',{
     title:'Get Products - Static',
     name:'jiankaiyu',
