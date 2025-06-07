@@ -1,43 +1,60 @@
-// server_26.js
-
-// 1. 必须把这行放在最最最前面，保证 .env 会最先被加载
 import 'dotenv/config';
-
 import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import apiProductRouter from './routes/api/apiProductRouter_26.js';
 
-const app_26 = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
+const app_26     = express();
+const port       = process.env.PORT || 5000;
 
-// 2. 从 process.env 里读取环境变量。如果 .env 有 PORT、DATABASE，就用它们；没有的话才 fallback 到默认值。
-const port = process.env.PORT || 5000;
-console.log('ENV check:', 'PORT=', process.env.PORT, 'DATABASE=', process.env.DATABASE);
+// 1) CORS & Body Parser
+app_26.use(cors());
+app_26.use(express.json());
+app_26.use(express.urlencoded({ extended: true }));
 
-app_26.use(express.static('public'));
+// 2) 静态资源 & EJS 配置 —— 一定要在所有渲染路由前面
+app_26.use(express.static(path.join(__dirname, 'public')));
+app_26.set('views', path.join(__dirname, 'views'));
 app_26.set('view engine', 'ejs');
 
-// 3. 渲染静态页面：访问 /product_26/static
-app_26.use('/product_26/static', (req, res) => {
-  res.render('product_26/static_26', {
-    title: 'Get Products - Static',
-    name: 'jiankaiyu',
-    id: '213410326',
-  });
-});
+console.log('ENV check:', 'PORT=', port, 'DATABASE=', process.env.DATABASE);
 
-// 4. 把 /api/product_26 的请求都给 apiProductRouter_26.js 来处理
-app_26.use('/api/product_26', apiProductRouter);
-
-// 5. 根路径：访问 / 时渲染 index.ejs
+// 3) 根页面
 app_26.get('/', (req, res) => {
   res.render('index', {
-    title: 'Express',
-    name: 'jiankaiyu',
-    id: '213410326',
+    title: 'Express Home',
+    name:  'jiankaiyu',
+    id:    '213410326',
   });
 });
 
-// 6. 启动监听。这里会打印 “Connecting <DATABASE> server on port: <port>”
+// 4) 产品静态示例页面（EJS）
+app_26.get('/product_26/static', (req, res) => {
+  res.render('product_26/static_26', {
+    title: 'Get Products - Static',
+    name:  'jiankaiyu',
+    id:    '213410326',
+  });
+});
+
+// 5) API 路由
+app_26.use('/api/product_26', apiProductRouter);
+
+// 6) 其它静态示例（如博客）
+app_26.get('/blog_26/static', (req, res) => {
+  res.render('blog_26/static_26', {
+    title: 'My Blog - Static',
+    name:  'jiankaiyu',
+    id:    '213410326',
+  });
+});
+
+// 7) 启动
 app_26.listen(port, () => {
   console.log(`Connecting ${process.env.DATABASE} server on port: ${port}`);
 });
+
 
