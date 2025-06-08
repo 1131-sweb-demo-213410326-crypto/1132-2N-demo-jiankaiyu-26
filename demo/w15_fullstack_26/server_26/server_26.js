@@ -1,60 +1,68 @@
-import 'dotenv/config';
+// server_26.js
 import express from 'express';
 import cors from 'cors';
+import logger from 'morgan';
 import path from 'path';
-import { fileURLToPath } from 'url';
-import apiProductRouter from './routes/api/apiProductRouter_26.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname  = path.dirname(__filename);
-const app_26     = express();
-const port       = process.env.PORT || 5000;
+import apiProductRouter   from './routes/api/apiProductRouter_26.js';
+import ProductRouter      from './routes/ProductRouter_26.js';
 
-// 1) CORS & Body Parser
-app_26.use(cors());
-app_26.use(express.json());
-app_26.use(express.urlencoded({ extended: true }));
+const app = express();
 
-// 2) 静态资源 & EJS 配置 —— 一定要在所有渲染路由前面
-app_26.use(express.static(path.join(__dirname, 'public')));
-app_26.set('views', path.join(__dirname, 'views'));
-app_26.set('view engine', 'ejs');
+// —— 静态目录 ——
+// 1) 把 public/ 映射到 /
+app.use(express.static(path.join(process.cwd(), 'public')));
 
-console.log('ENV check:', 'PORT=', port, 'DATABASE=', process.env.DATABASE);
+// 2) （可选）把 public/product 映射到 /product-static
+app.use(
+  '/product-static',
+  express.static(path.join(process.cwd(), 'public', 'product'))
+);
 
-// 3) 根页面
-app_26.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Express Home',
-    name:  'jiankaiyu',
-    id:    '213410326',
-  });
-});
+// —— 中间件 & 视图引擎 —— 
+app.use(cors());
+app.use(logger('dev'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(process.cwd(), 'views'));
 
-// 4) 产品静态示例页面（EJS）
-app_26.get('/product_26/static', (req, res) => {
+// —— 路由 ——
+// API 路由
+app.use('/api/product_26', apiProductRouter);
+
+// 动态产品页
+app.use('/product_26', ProductRouter);
+
+// 产品静态 EJS
+app.get('/product_26/static', (req, res) => {
   res.render('product_26/static_26', {
-    title: 'Get Products - Static',
+    title: 'Get Products - Static (EJS)',
     name:  'jiankaiyu',
-    id:    '213410326',
+    id:    '213410326'
   });
 });
 
-// 5) API 路由
-app_26.use('/api/product_26', apiProductRouter);
-
-// 6) 其它静态示例（如博客）
-app_26.get('/blog_26/static', (req, res) => {
+// 博客静态页
+app.get('/blog_26/static', (req, res) => {
   res.render('blog_26/static_26', {
+    title: 'Get Blogs - Static',
+    name:  'jiankaiyu',
+    id:    '213410326'
+  });
+});
+
+// 首页
+app.get('/', (req, res) => {
+  res.render('index', {
     title: 'My Blog - Static',
     name:  'jiankaiyu',
-    id:    '213410326',
+    id:    '213410326'
   });
 });
 
-// 7) 启动
-app_26.listen(port, () => {
-  console.log(`Connecting ${process.env.DATABASE} server on port: ${port}`);
-});
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
+
+
+
 
 
